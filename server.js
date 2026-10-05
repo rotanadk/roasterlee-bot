@@ -1,5 +1,5 @@
 import express from 'express'; import Database from 'better-sqlite3'; import crypto from 'crypto';
-const app=express(); app.use(express.json()); app.use(express.static('public'));
+const app=express(); app.use(express.json()); app.use(express.static('.'));
 const db=new Database('roasterlee.db');
 db.exec(`CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY,name TEXT,role TEXT,status TEXT); CREATE TABLE IF NOT EXISTS blends(code TEXT PRIMARY KEY,recipe TEXT); CREATE TABLE IF NOT EXISTS orders(id INTEGER PRIMARY KEY AUTOINCREMENT,customer TEXT,blend TEXT,kg REAL,status TEXT DEFAULT 'Pending',created_at TEXT DEFAULT CURRENT_TIMESTAMP);`);
 const OWNER=401102212; db.prepare('INSERT OR IGNORE INTO users VALUES(?,?,?,?)').run(OWNER,'Owner','admin','approved');
